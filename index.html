@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>영화 검색 사이트</title>
-    <h1>영화 검색</h1>
-    <style></style>
+    <style type="text/css">
+        .main {
+            margin: 10px 0 20px 0;
+            background-position: center;
+            background-color: green;
+            background-size: 2000px;
+        }
+
+        body {
+            background-color: #E2E2E2;
+        }
+
+        .container {
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+
+        .container>  .item {
+            background-color: yellow;
+        }
+    </style>
 </head>
+
 <body>
-    <script src="index.js"></script>
+    <div class="main">
+        <h1>영화 검색</h1>
+        <form class="input-box" role="search" >
+            <input type="search" placeholder="영화를 검색하세요…">
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="item">영화1</div>
+        <div class="item">영화2</div>
+        <div class="item">영화3</div>
+    </div>
+    <script src="fetch1.js"></script>
 </body>
+
 </html>
