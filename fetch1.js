@@ -12,3 +12,25 @@ fetch(url, options)
   .then(res => res.json())
   .then(json => console.log(json))
   .catch(err => console.error(err));
+
+
+
+
+// 필요한데이터 
+// title, poster_path, vote_average
+
+
+
+  // // 필요한 정보를 저장 
+  // async function () {
+    
+  // }
+
+  // let docs = await getDocs(collection(db, "albums"));
+  //       docs.forEach((doc) => {
+  //           let row = doc.data();
+
+  //           let image = row['image'];
+  //           let title = row['title'];
+  //           let content = row['content'];
+  //           let date = row['date'];
