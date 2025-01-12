@@ -1,5 +1,3 @@
-
-const url = 'https://api.themoviedb.org/3/movie/popular?language=kr-KO&page=1';
 const options = {
   method: 'GET',
   headers: {
@@ -8,9 +6,10 @@ const options = {
   }
 };
 
-fetch(url, options)
+fetch('https://api.themoviedb.org/3/movie/popular?api_key=3ee09de682c96ebde809ab5428f309c7&language=ko-KR&page=1&region=KR', options)
   .then(res => res.json())
-  .then(json => console.log(json))
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
   
 
 
