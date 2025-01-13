@@ -1,5 +1,5 @@
 const resultUl=document.querySelector("#result");
-
+const cards=document.querySelector(".makecards")
 
 const options = {
   method: 'GET',
@@ -11,69 +11,42 @@ const options = {
 
 let url="https://api.themoviedb.org/3/movie/popular?api_key=3ee09de682c96ebde809ab5428f309c7&language=ko-KR&page=1&region=KR"
 
+let temp_html ;
+
 fetch(url, options)
   .then(res => res.json())
-  .then(function(res1)) {
-    temp_html= null;
-    res.array.forEach(function (data) => {
+  // await async로 고치기 
+  // map이나 foreach 등으로 카드 함수를 부르기
+  .then((res1) => {
+    res1.forEach((data) => {
 
-      temp_html += `<div class="item">
-      <img src="${res1[i].poster_path}"
-                alt="...">
-            <h3 class="card_title">${res1[i].title}</h3>
-            <p class="card_rank">${res[i].vote_average}</p>
-            </div>`;
+      // 카드 함수 따로 만들기
+     
     });    
-  };  
-  
+  });  
+
     resultUl.innerHTML = temp_html;
 
 
-  // let docs = await getDocs(collection(results, "object"));
-  // docs.forEach((doc) => {
-  //   data = {
-      //    let poster_path = row['poster_path'];
-      //   let title = row['title'];
-      //   let vote_average = row['vote_average'];
-  // };
+
+//  await /async 로 다고치고 
+// 카드를 만드는 함수를 따로 만든다
+// map, foreach 문을 돌려서 
+//  const data = fetch(...);
+//  const res = fetch();
+// const data = await res.json();
+// data.map ((item)=> {
+//   카드 로직만드는 함수를 넣는다
+// })
+
+//  카드의 부모가 되는 div를 가지고 와서 선언해야 함 
+// function makeCard(item){
+//   //div 선언
+//   const newDiv = doucment.createElement("div");
   
-  //   
-  // });
+//   newDiv.ineerHtml =`<img > ....`
+//   return newDiv
 
-  //   let temp_html = `<div class="item">
-  //           <img src="${image}"
-  //               alt="...">
-  //           <h3 class="card_title">${title}</h3>
-  //           <p class="card_rank">${vote_average}</p>
-  //       </div>`
+//   const cardList = document.getElementById("cardList");
+//   cardList.appendChild(.. 카드를 여기다) 
 
-  //             $('#item').append(temp_html); 
-
-//  <div class="col">
-//                     <div class="card h-100">
-//                       <img src="${image}" class="card-img-top" alt="...">
-//                       <div class="card-body">
-//                         <h5 class="card-title">${title}</h5>
-//                         <p class="card-text">${star}</p>
-//                         <p class="card-text">${comment}</p>
-//                       </div>
-//                     </div>
-//                   </div>`;
-// 필요한데이터 
-// title, poster_path, vote_average
-
-
-
-  // // 필요한 정보를 저장 
-  // async function () {
-    
-  // }
-
-  // let docs = await getDocs(collection(db, "albums"));
-  //       docs.forEach((doc) => {
-  //           let row = doc.data();
-
-  //           let image = row['image'];
-  //           let title = row['title'];
-  //           let content = row['content'];
-  //           let date = row['date'];
