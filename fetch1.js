@@ -15,14 +15,15 @@ fetch(url, options)
   .then(res => res.json())
   .then(function(res1)) {
     temp_html= null;
-    for (let i=0; i<=res1.length; i++) {
+    res.array.forEach(function (data) => {
+
       temp_html += `<div class="item">
       <img src="${res1[i].poster_path}"
                 alt="...">
             <h3 class="card_title">${res1[i].title}</h3>
             <p class="card_rank">${res[i].vote_average}</p>
             </div>`;
-    };    
+    });    
   };  
   
     resultUl.innerHTML = temp_html;
