@@ -11,7 +11,7 @@ const options = {
 // fetch url 
 let url="https://api.themoviedb.org/3/movie/popular?api_key=${}&language=ko-KR&page=1&region=KR"
 
-let imgURl="https://image.tmdb.org/t/p/w500/";
+let imgURl="https://image.tmdb.org/t/p/w185/";
 
 // fetch 데이터 받아서 정리 
 fetch(url, options)
