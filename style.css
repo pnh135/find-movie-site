@@ -52,7 +52,6 @@ input {
 }
 
 .card_image {
-    display: flex;
     background-position: center;
     object-fit: contain;
 }
