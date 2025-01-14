@@ -14,7 +14,8 @@ h1 {
     margin: 1px 0 1px 0;
 }
 
-span {
+h5 {
+    margin: 10px;
     font-size: x-small;
 
 }
@@ -63,6 +64,6 @@ input {
     margin: 3px;
 }
 
-.modal {
+/* .modal {
     display: none;
-}
+} */
