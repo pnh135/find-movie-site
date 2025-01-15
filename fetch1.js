@@ -11,11 +11,13 @@ const options = {
 // fetch url 
 let url = "https://api.themoviedb.org/3/movie/popular?api_key=${}&language=ko-KR&page=1&region=KR"
 let imgUrl = "https://image.tmdb.org/t/p/w185/";
+let movieList  ;
 
 // fetch 데이터 받아서 정리 
 fetch(url, options)
   .then((response) => response.json())
   .then((data) => {
+    movieList = data.results;
     data.results.forEach((moviedata) => {
       document.querySelector(".container").innerHTML += `
        <div class ="item">
@@ -36,26 +38,27 @@ fetch(url, options)
 
 // search enter 이벤트 발생
 const SearchInput = document.querySelector('#search');
-const keyword = SearchInput.value;
-const items = document.querySelector(".container");
-function SearchEnter(event) {
-  let key = event.key || event.code;
 
-  if (key === 'Enter'|| key === 13) {
-    console.log(items)
-    items.filter(function (SearchInput) {
-      return SearchInput.title.includes(keyword);
-    })
-  }
-}
+// function SearchEnter(event) {
+//   console.log(` event : ${event}`)
+//   let key = event.key || event.code;
 
-// // SearchInput.addEventListener('keydown', function (event) {
-// //   if (event.key === 'Enter') {
-// //     data.results.filter(function (wanted) {
-// //       return wanted.title.includes(keyword);
-// //     });
+//   if (key === 'Enter'|| key === 13) {
+//     console.log(items)
+//     items.filter(function (SearchInput) {
+//       return SearchInput.title.includes(keyword);
+//     })
 //   }
-// });
+// }
+
+SearchInput.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    const keyword = SearchInput.value;
+    movieList.filter(function (wanted) {
+      return wanted.title.includes(keyword);
+    });
+  }
+});
 
 
 // const getData = async () => {
