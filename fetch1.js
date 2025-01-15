@@ -9,47 +9,44 @@ const options = {
 };
 
 // fetch url 
-let url = "https://api.themoviedb.org/3/movie/popular?api_key=${}&language=ko-KR&page=1&region=KR"
+let url = "https://api.themoviedb.org/3/movie/popular?api_key=3ee09de682c96ebde809ab5428f309c7&language=ko-KR&page=1&region=KR"
 let imgUrl = "https://image.tmdb.org/t/p/w185/";
-let movieList  ;
+
+// 전역 함수 정의
+let movieList;
 
 // fetch 데이터 받아서 정리 
 fetch(url, options)
   .then((response) => response.json())
   .then((data) => {
     movieList = data.results;
-    data.results.forEach((moviedata) => {
-      document.querySelector(".container").innerHTML += `
-       <div class ="item">
-            <img src="${imgUrl}${moviedata.poster_path}" alt="..." id="card_image">
-            <h3 class="card_title">${moviedata.title}</h3>
-            <p class= "card_rank">평점: ${moviedata.vote_average}</p>
-        </div>`;
-
-    })
-      .catch((error) =>
-        document.querySelector(".container").innerHTML += `
-            <div>
-                <div>Error occurred.</div>
-            </div>
-          `)
+  })
+  .catch((error) => {
+    console.log("오류 발생")
   })
 
+// 카드 생성 함수
+function makeMovieCard(movie) {
+  const cardDiv = document.createElement('div');
+  cardDiv.innerHTML = `
+          <div class ="item">
+            <img src="${imgUrl}${movie.poster_path}" alt="..." id="card_image">
+            <h3 class="card_title">${movie.title}</h3>
+            <p class= "card_rank">평점: ${movie.vote_average}</p>
+        </div>`;
+
+  return cardDiv;
+};
+
+// 카드 생성 
+const cardList = document.querySelector(".container");
+movieList.forEach((movie) => {
+  const card = makeMovieCard(movie);
+  cardList.appendChild(card);
+});
 
 // search enter 이벤트 발생
 const SearchInput = document.querySelector('#search');
-
-// function SearchEnter(event) {
-//   console.log(` event : ${event}`)
-//   let key = event.key || event.code;
-
-//   if (key === 'Enter'|| key === 13) {
-//     console.log(items)
-//     items.filter(function (SearchInput) {
-//       return SearchInput.title.includes(keyword);
-//     })
-//   }
-// }
 
 SearchInput.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
@@ -59,8 +56,6 @@ SearchInput.addEventListener('keydown', function (event) {
     });
   }
 });
-
-
 // const getData = async () => {
 //     const response = await fetch(url, options);
 //     const moviedata = await response.json();
