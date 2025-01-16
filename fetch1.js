@@ -20,6 +20,11 @@ fetch(url, options)
   .then((response) => response.json())
   .then((data) => {
     movieList = data.results;
+    movieList.forEach((movie) => {
+  const card = makeMovieCard(movie);
+  cardList.appendChild(card);
+});
+
   })
   .catch((error) => {
     console.log("오류 발생")
@@ -40,19 +45,24 @@ function makeMovieCard(movie) {
 
 // 카드 생성 
 const cardList = document.querySelector(".container");
-movieList.forEach((movie) => {
-  const card = makeMovieCard(movie);
-  cardList.appendChild(card);
-});
+console.log(movieList)
 
 // search enter 이벤트 발생
 const SearchInput = document.querySelector('#search');
 
 SearchInput.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
+    cardList.innerHTML = ""
     const keyword = SearchInput.value;
-    movieList.filter(function (wanted) {
+    console.log(`keyword :${keyword}`) 
+    console.log(movieList)
+    const filteredMovie = movieList.filter(function (wanted) {
       return wanted.title.includes(keyword);
+    });
+    filteredMovie.forEach((movie) => {
+      console.log(`movie : ${JSON.stringify(movie)}`)
+      const card = makeMovieCard(movie);
+      cardList.appendChild(card);
     });
   }
 });
