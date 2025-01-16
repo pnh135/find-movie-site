@@ -64,6 +64,14 @@ input {
     margin: 3px;
 }
 
-/* .modal {
+.modal {
+    border: 1px solid black;
+    width: 30%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.hide {
     display: none;
-} */
+}

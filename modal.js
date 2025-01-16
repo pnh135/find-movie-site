@@ -1,16 +1,24 @@
-const input = document.querySelector('input[type="text"]');
+// <!-- 모달 열기 버튼 -->
+// 	<button class="modal-btn">모달창 열기</button>
+// 	<!-- 모달 창: hide 클래스로 숨김처리 -->
+// 	<div class="modal hide">
+// 		<div class="modal-content">
+// 			<h2>모달창</h2>
+// 			<p>모달창 내용</p>
+// 			<button class="close-btn">닫기</button>
+// 		</div>
+// 	</div>
 
-input.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        // 엔터키를 눌렀을 때 수행할 동작
-        console.log('엔터키를 눌렀습니다.');
-    }
-});
 
+const modal = document.querySelector(".modal");
+const closeBtn = document.querySelector(".close-btn")
 
-
-const toggleModal = function () {
-    modal.classList.toggle("hide")
+function toggleModal(a) {
+    modal.style.display = (a);
 };
 
-modalBtn.addEventLister("click", toggleModal);
+const toggleClosed = closeBtn.addEventListener("click", function () {
+    toggleModal("none");
+})
+
+export default toggleClosed;

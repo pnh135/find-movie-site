@@ -10,6 +10,7 @@ const options = {
 
 // fetch url 
 let url = "https://api.themoviedb.org/3/movie/popular?api_key=3ee09de682c96ebde809ab5428f309c7&language=ko-KR&page=1&region=KR"
+let url2 = "https://api.themoviedb.org/3/keyword/keyword_id?api_key=3ee09de682c96ebde809ab5428f309c7&language=ko-KR&page=1&region=KR"
 let imgUrl = "https://image.tmdb.org/t/p/w185/";
 
 // 전역 함수 정의
@@ -43,9 +44,9 @@ function makeMovieCard(movie) {
   return cardDiv;
 };
 
+
 // 카드 생성 
 const cardList = document.querySelector(".container");
-console.log(movieList)
 
 // search enter 이벤트 발생
 const SearchInput = document.querySelector('#search');
@@ -54,37 +55,35 @@ SearchInput.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
     cardList.innerHTML = ""
     const keyword = SearchInput.value;
-    console.log(`keyword :${keyword}`) 
-    console.log(movieList)
     const filteredMovie = movieList.filter(function (wanted) {
       return wanted.title.includes(keyword);
     });
     filteredMovie.forEach((movie) => {
-      console.log(`movie : ${JSON.stringify(movie)}`)
       const card = makeMovieCard(movie);
       cardList.appendChild(card);
     });
   }
 });
-// const getData = async () => {
-//     const response = await fetch(url, options);
-//     const moviedata = await response.json();
-//     const cardList = document.createDocumentFragment();
-//     Array.from(moviedata).forEach((item) => {
-//       const stagedItem = document.createElement("li");
-//       stagedItem.dataset.img = item.poster_path;
-//       stagedItem.dataset.title = item.title;
-//       stagedItem.dataset.average = vote_average;
-//       stagedItem.classList ="list";
-//       stagedItem.innerHTML = `<div class="item">
-//                     <img src= "${item.img}" alt="...">
-//                     <h3>${item.title}</h3>
-//                     <p>${item.average}</p>
-//                 </div>`;
-//       cardList.appendChild(stagedItem);
-//     });
-//     makeCards.appendChild(cardList);
-//     return moviedata;
+
+// 모달 구현을 위한 click 이벤트 
+
+const modal= cardList.addEventListener("click", function (event) {
+  let clickClass= event.currentTarget;
+  console.log(clickClass)
+  return alert ("이 카드는" + `${event.currentTarget.title}`);
+}
+)
+
+// 모달 형태 구현 
+
+// const modal = document.querySelector(".modal");
+// const closeBtn = document.querySelector(".close-btn")
+
+// function toggleModal(a) {
+//     modal.style.display = (a);
 // };
 
-// getData();
+// const toggleClosed = closeBtn.addEventListener("click", function () {
+//     toggleModal("none");
+// })
+
