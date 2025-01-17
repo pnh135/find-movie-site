@@ -19,7 +19,7 @@
  # 프로젝트 정보 
 <br/>
 
-사용: `html :5` `Javascript` , `css6` , `TMDB`
+사용: `html 5` `Javascript` , `css 3` , `TMDB`
 
 
 기한: `25.01.08 - 25.01.17`
