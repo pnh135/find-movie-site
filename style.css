@@ -30,7 +30,6 @@ body {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: minmax(185px, auto);
-    gap: 33px;
     background-color: transparent;
     justify-content: center ;
 }
@@ -66,10 +65,13 @@ input {
 
 .modal {
     border: 1px solid black;
-    width: 30%;
-    height: 30%;
-    display: flex;
-    justify-content: center;
+    top: 10vw;
+    left: 20vw;
+    width: 60%;
+    height: 50%;
+    display: none;
+    position: fixed;
+    background-color: white;
 }
 
 .hide {

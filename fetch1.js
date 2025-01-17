@@ -10,7 +10,7 @@ const options = {
 
 // fetch url 
 let url = "https://api.themoviedb.org/3/movie/popular?api_key=3ee09de682c96ebde809ab5428f309c7&language=ko-KR&page=1&region=KR"
-let url2 = "https://api.themoviedb.org/3/keyword/keyword_id?api_key=3ee09de682c96ebde809ab5428f309c7&language=ko-KR&page=1&region=KR"
+let url2 = "https://api.themoviedb.org/3/movie/${wantedId}?api_key=3ee09de682c96ebde809ab5428f309c7&language=ko-KR&page=1&region=KR"
 let imgUrl = "https://image.tmdb.org/t/p/w185/";
 
 // 전역 함수 정의
@@ -33,15 +33,22 @@ fetch(url, options)
 
 // 카드 생성 함수
 function makeMovieCard(movie) {
-  const cardDiv = document.createElement('div');
-  cardDiv.innerHTML = `
+  const cardUl = document.createElement('ul');
+  cardUl.innerHTML = `
           <div class ="item">
             <img src="${imgUrl}${movie.poster_path}" alt="..." id="card_image">
             <h3 class="card_title">${movie.title}</h3>
             <p class= "card_rank">평점: ${movie.vote_average}</p>
         </div>`;
+  cardUl.setAttribute("class", "TagedItem")
 
-  return cardDiv;
+  cardUl.addEventListener("click",function () {
+    const wantedId = movie.id;
+    return wantedId
+  }
+)
+
+  return cardUl;
 };
 
 
@@ -67,23 +74,46 @@ SearchInput.addEventListener('keydown', function (event) {
 
 // 모달 구현을 위한 click 이벤트 
 
-const modal= cardList.addEventListener("click", function (event) {
-  let clickClass= event.currentTarget;
-  console.log(clickClass)
-  return alert ("이 카드는" + `${event.currentTarget.title}`);
-}
-)
+
+// const modals= cardList.addEventListener("click", function (event) {
+//   const wantedCard = cardList.classList.contains("TagedItem") ;
+// console.log(wantedCard)
+// let clickClass= event.currentTarget;
+//   console.log(clickClass)
+//   return alert ("이 카드는" + `${event.currentTarget.title}`);
+// }
+// )
 
 // 모달 형태 구현 
 
-// const modal = document.querySelector(".modal");
-// const closeBtn = document.querySelector(".close-btn")
+const modal = document.querySelector(".modal");
+const closeBtn = document.querySelector(".close-btn")
 
-// function toggleModal(a) {
-//     modal.style.display = (a);
-// };
+function toggleModal(a) {
+    modal.style.display = (a);
+};
 
-// const toggleClosed = closeBtn.addEventListener("click", function () {
-//     toggleModal("none");
-// })
+const toggleClosed = closeBtn.addEventListener("click", function () {
+    toggleModal("none");
+})
 
+//  모달 내용 구현 
+
+const modalClick = fetch(url2, options)
+  .then((response) => response.json())
+  .then((data) => {
+    movieDetail = data;
+    
+    console.log(data)
+  })
+
+function makeMovieDetails(movieDetail) {
+  modal.innerHTML = `
+  <h3 class = "close-btn">&times;</h3>
+            <img src="${imgUrl}${movieDetail.backdrop_path}" alt="...">
+            <h3>${movieDetail.title}</h3>
+            <h4>개봉일 ${movieDetail.release_date}</h4>
+            <p> 줄거리: ${movieDetail.release_date}</p>`;
+
+  return modal;
+};
