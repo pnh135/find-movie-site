@@ -31,3 +31,5 @@
 +  [fetch 정복](https://velog.io/@pna9904/114-fetch-오류-수정)
 
 +  [search에 필요한 enter 이벤트](https://velog.io/@pna9904/115-enter에-반응하는-함수-수정)
+
++  [foreach 함수 오류](https://velog.io/@pna9904/116-임시)
