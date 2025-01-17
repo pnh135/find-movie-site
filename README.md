@@ -1,6 +1,6 @@
 # 프로젝트 소개 
 
-![전체 이미지]()
+![전체 이미지](https://github.com/pnh135/parkNahyun99/blob/main/Screenshot%202025-01-17%20at%2011.08.56.JPG?raw=true)
 
 해당 프로젝트는 손쉽게 영화를 검색하여 정보를 얻기 위한 홈페이지를 위하여 기획되었다. 
 
